@@ -8,6 +8,7 @@ public class DiezxcientoTest {
 
 	@Test
 	public void testDiezxciento() throws Exception {
+
 		Diezxciento diezxciento = new Diezxciento(24000000,900000);
 		assertEquals(2400000, diezxciento.diezxciento());
 	}
@@ -15,7 +16,11 @@ public class DiezxcientoTest {
 	@Test
 	public void testImpuesto() throws Exception {
 		Diezxciento diezxciento = new Diezxciento(24000000,900000);
-		assertEquals(0, diezxciento.impuesto());
+		assertEquals(90000, diezxciento.impuesto());
+		diezxciento=new Diezxciento();
+		assertEquals(70000, diezxciento.impuesto());
+		diezxciento=new Diezxciento(24000000,2500000);
+		assertEquals(375000, diezxciento.impuesto());
 	}
 
 	@Test

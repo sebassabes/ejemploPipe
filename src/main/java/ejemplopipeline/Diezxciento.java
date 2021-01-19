@@ -22,7 +22,10 @@ public class Diezxciento {
 	}
 	
 	public int impuesto(){
-		return 0;
+		double impuesto=0;
+		if(sueldo>2000000) impuesto=sueldo*0.15; 
+		else impuesto=sueldo*0.1;
+		return (int) impuesto;
 	}
 	
 	public int saldoAhorro() {
