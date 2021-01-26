@@ -19,5 +19,12 @@ pipeline {
                 bat 'mvn test'
             }
         }
+       stage('test ws'){
+           steps{
+           sh 'newman run test_api.postman_collection.json'
+          }       
+	
+          }
+
     }
 }

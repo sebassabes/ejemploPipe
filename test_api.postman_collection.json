@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "56b21e77-1fdb-4c39-b9ea-3349d691738b",
+		"name": "test_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get precio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Payload must be valid and have a body\", function () { \r",
+							"     pm.response.to.be.withBody; // body tiene que exitir\r",
+							"     pm.response.to.be.json; // además que sea un JSON válido\r",
+							"});\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"var schema = {\r",
+							"   \"type\": \"array\",\r",
+							"   \"items\": { \"$ref\": \"covidSchema\" }\r",
+							"};\r",
+							"var covidSchema = {\r",
+							"    \"properties\": {\r",
+							"     \r",
+							"        \"ID\":{ \"type\": \"String\" },\r",
+							"        \"Country\": { \"type\": \"String\" },\r",
+							"        \"CountryCode\": { \"type\": \"String\" },\r",
+							"        \"Province\": { \"type\": \"String\" },\r",
+							"        \"City\": { \"type\": \"String\" },\r",
+							"        \"CityCode\":{ \"type\": \"String\" },\r",
+							"        \"Lat\": { \"type\": \"String\" },\r",
+							"        \"Lon\":{ \"type\": \"String\" },\r",
+							"        \"Confirmed\": { \"type\": \"integer\" },\r",
+							"        \"Deaths\": { \"type\": \"integer\" },\r",
+							"        \"Recovered\": { \"type\": \"integer\" },\r",
+							"        \"Active\": { \"type\": \"integer\" },\r",
+							"        \"Date\": { \"type\": \"String\" },\r",
+							"    \r",
+							"    \r",
+							"    }\r",
+							"};\r",
+							"tv4.addSchema('CovidSchema', covidSchema);\r",
+							"pm.test('Covid schema is valid', function() {\r",
+							"  pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.covid19api.com/live/country/Chile",
+					"protocol": "https",
+					"host": [
+						"api",
+						"covid19api",
+						"com"
+					],
+					"path": [
+						"live",
+						"country",
+						"Chile"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
